@@ -1,0 +1,10 @@
+.vscode
+
+public
+
+**/*.lock
+
+**/_gen
+
+
+themes/hugo-book
