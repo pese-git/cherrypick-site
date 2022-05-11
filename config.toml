@@ -1,4 +1,4 @@
-baseURL = 'http://example.org/'
+baseURL = 'https://pese-git.github.io/cherrypick-site/'
 languageCode = 'en-us'
 title = 'CherryPick DI'
 
