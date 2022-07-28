@@ -1,27 +1,20 @@
 
-## Предыстория
+## History
 
-Первые попытки разработать свой DI для пет проектов написанных на Flutter SDK были начаты в начале 2020 года.
+The first attempts to develop our own DI for pet projects written on the Flutter SDK were started at the  start of 2020.
 
-Сподвигло меня на этот шаг несколько причин: 
+Several reasons prompted me to take this step:
 
-1. На тот момент я не нашел DI в pub.dev с возможностью делить контейнер на scope
-2. Упростить работу с зависимостями в проекте
-3. Желание написать собственный  DI
-4. Иметь в арсенале простой DI  (надеюсь с простым API)
-
-В июне 2020 был принято решение вести разработку в публичном репозитории.
-
-В марте 2021 было добавлена поддержка null-safety.
-
-В апреле 2021 было переработано api библиотеки.
-
-С апреля 2021 было принято решение использовать библиотеку в разработке коммерческого проекта.
+1. At that time, I did not find DI in pub.dev with the ability to divide the container into scope (perhaps I was looking badly)
+2. Simplify working with dependencies in the project
+3. Desire to write your own DI
+4. Have a simple DI in your arsenal (hopefully with a simple API)
 
 
-## Возможности библиотеки
 
-Основные возможности DI контейнера:
- - Инициализация экземпляра с именем
- - Инициализация экземпляра как singleton
- - Разделение контейнера на области видимости (scopes)
+## Library's features:
+
+DI container's main features:
+ - Initialization instance with name
+ - Initialization instance when singleton
+ - Separate container to scopes

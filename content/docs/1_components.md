@@ -1,6 +1,6 @@
-## Основные компоненты DI
+## Main components DI
 
-Библиотека состоит из трех основных компонентов:
+Library contain three main components:
  - Scope
  - Module
  - Binding
@@ -8,30 +8,33 @@
 
 ### Scope
 
-**Scope** - это контейнер, который хранит все дерево зависимостей (scope,modules,instances).
-Через scope можно получить доступ к `instance`, для этого нужно вызвать метод `resolve<T>()` и указать тип объекта, а так же можно передать дополнительные параметры.
+**Scope** is a container that stores the entire dependency tree (scope, modules, instances).
+Through the scope, you can access the custom `instance`, for this you need to call the `resolve<T>()` method and specify the type of the object, and you can also pass additional parameters.
 
-**Scope** определяет область видимости и время жизни зависимостей. 
-
-**Scope** в приложении образуют древовидную иерархическую структуру. Например, у вас может быть **Scope** для всего приложения, и дочерний **Scope** для конкретного экрана или группы экранов.
-
-Чтобы получить объект **Scope**, его нужно “открыть”. Для простоты сделаем один **Scope** на всё приложение:
+Example:
 
 ```dart
-    final rootScope = CherryPick.openScope(named: 'appScope');
+    // open main scope
+    final rootScope =  Cherrypick.openRootScope();
+
+    // initializing scope with a custom module
+    rootScope.installModules([AppModule()]);
+
+    // takes custom instance
+    final str = rootScope.resolve<String>();
+    // or
+    final str = rootScope.tryResolve<String>();
+
+    // close main scope
+    Cherrypick.closeRootScope();
 ```
-
-Если повторно открыть **Scope** с тем же самым именем, мы получим уже существующий экземпляр **Scope**.
-
-Когда **Scope** перестанет быть нужным, его (и всё дерево “дочерних” **Scope**) можно будет закрыть с помощью метода `CHerryPick.closeScope(name)`
-
 
 ### Module
 
-**Module** - это набор правил, по которым CherryPick будет разрешать зависимости в конкретном `Scope`. Пользователь в своем модуле должен реализовать метод `void builder(Scope currentScope)`. Модули добавляются в `Scope` с помощью метода `scope.installModules(…)`, после чего `Scope` может разрешать зависимости по правилам, определённым в его модулях.
+**Module** is a container of user instances, and on the basis of which the user can create their modules. The user in his module must implement the `void builder (Scope currentScope)` method. Модули добавляются в `Scope` с помощью метода `scope.installModules(…)`, после чего `Scope` может разрешать зависимости по правилам, определённым в его модулях.
 
 
-Пример:
+Example:
 
 ```dart
 class AppModule extends Module {
@@ -45,37 +48,37 @@ class AppModule extends Module {
 
 ### Binding
 
-**Binding** - по сути это конфигуратор  для  пользовательского instance, который содержит методы для конфигурирования зависимости.
+Binding is a custom instance configurator that contains methods for configuring a dependency.
 
-Есть два основных метода для инициализации пользовательского instance `toInstance()` и `toProvide()` и вспомогательных `withName()` и `singleton()`.
+There are two main methods for initializing a custom instance `toInstance()` and `toProvide()` and auxiliary `withName()` and `singleton()`.
 
-`toInstance()` - принимает готовый экземпляр
+`toInstance()` - takes a initialized instance
 
-`toProvide()` -  принимает функцию `provider` (конструктор экземпляра)
+`toProvide()` -  takes a `provider` function (instance constructor)
 
-`withName()` - принимает строку для именования экземпляра. По этому имени можно будет извлечь instance из  DI контейнера
+`withName()` - takes a string to name the instance. By this name, it will be possible to extract instance from the DI container
 
-`singleton()` -  устанавливает флаг в Binding, который говорит DI контейнеру, что зависимость одна.
+`singleton()` -  sets a flag in the Binding that tells the DI container that there is only one dependency.
 
-Пример:
+Example:
 
 ```dart
- // инициализация экземпляра текстовой строки через метод toInstance()
- bind<String>().toInstance("hello world");
+ // initializing a text string instance through a method toInstance()
+ Binding<String>().toInstance("hello world");
 
- // или
+ // or
 
- // инициализация экземпляра текстовой строки
- bind<String>().toProvide(() => "hello world");
+ // initializing a text string instance
+ Binding<String>().toProvide(() => "hello world");
 
- // инициализация экземпляра строки с именем
- bind<String>().withName("my_string").toInstance("hello world");
- // или
- bind<String>().withName("my_string").toProvide(() => "hello world");
+ // initializing an instance of a string named
+ Binding<String>().withName("my_string").toInstance("hello world");
+ // or
+ Binding<String>().withName("my_string").toProvide(() => "hello world");
 
- // инициализация экземпляра, как singleton
- bind<String>().toInstance("hello world");
- // или
- bind<String>().toProvide(() => "hello world").singleton();
+ // instance initialization like singleton
+ Binding<String>().toInstance("hello world");
+ // or
+ Binding<String>().toProvide(() => "hello world").singleton();
 
 ```

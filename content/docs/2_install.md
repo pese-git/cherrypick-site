@@ -1,24 +1,24 @@
 
-# Подключение библиотеки
+# Use to library
 
-## Установите библиотеку
+## Install library
 
-Запустите команду:
+Run command:
 
-Для Dart проекта:
+For Dart project:
 
 ```sh
 dart pub add cherrypick
 ```
 
 
-Для Flutter проекта:
+For Flutter flutter:
 
 ```sh
 flutter pub add cherrypick
 ```
 
-Команда добавит  строку  пакета  `cherrypick` (и запустит в фоне неявно dart pub get):
+Command added library  `cherrypick` (and run command `dart pub get` in background) to `pubspec.yaml`:
 
 ```yaml
 dependencies:
@@ -28,9 +28,9 @@ dependencies:
 
 
 
-## Импортируйте библиотеку
+## Import library
 
-Теперь в вашем коде Dart вы можете использовать:
+Now you can use library:
 
 ```dart
 import 'package:cherrypick/cherrypick.dart';

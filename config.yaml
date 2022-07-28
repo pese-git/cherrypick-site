@@ -1,0 +1,17 @@
+baseURL: 'http://example.org/'
+languageCode: 'en-us'
+title: 'CherryPick DI'
+
+theme: ['hugo-book']
+
+
+
+languages:
+  en:
+    languageName: English
+    contentDir: content
+    weight: 1
+  ru:
+    languageName: Russian
+    contentDir: content.ru
+    weight: 2

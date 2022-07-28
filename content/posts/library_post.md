@@ -14,54 +14,44 @@ weight: 10
 
 # CherryPick DI
 
-DI-контейнер – это библиотека, которая обеспечивает функциональность механизма внедрения зависимостей.
+DI-container – this is library, when provide mechanism dependency injection.
 
 
-## Содержание
+## Content
 
- 1. Предисловие
- 2. Возможности библиотеки
- 3. Компоненты библиотеки
-    - 3.1. Scope
-    - 3.2. Module
-    - 3.3. Binding
- 4. Пример использования
- 5. Заключение
-
-
-## 1. Предисловие
-
-Первые попытки разработать свой DI для пет проектов написанных на Flutter SDK были начаты в конце 2019 года.
-
-Сподвигло меня на этот шаг несколько причин: 
-
-1. На тот момент я не нашел DI в pub.dev с возможностью делить контейнер на scope (возможно плохо искал)
-2. Упростить работу с зависимостями в проекте
-3. Желание написать собственный  DI
-4. Иметь в арсенале простой DI  (надеюсь с простым API)
-
-В июне 2020 был принято решение вести разработку в публичном репозитории.
-
-В марте 2021 было добавлена поддержка null-safety.
-
-В апреле 2021 было переработано api библиотеки.
-
-С апреля 2021 было принято решение использовать библиотеку в разработке коммерческого проекта.
+1. Preface
+  2. Library features
+  3. Library components
+     - 3.1. scope
+     - 3.2. module
+     - 3.3. Binding
+  4. Usage example
+  5. Conclusion
 
 
-## 2. Возможности библиотеки
+## 1. Preface
 
-Основные возможности DI контейнера:
- - Инициализация экземпляра с именем
- - Инициализация экземпляра как singleton
- - Разделение контейнера на области видимости (scopes)
+The first attempts to develop our own DI for pet projects written on the Flutter SDK were started at the  start of 2020.
+
+Several reasons prompted me to take this step:
+
+1. At that time, I did not find DI in pub.dev with the ability to divide the container into scope (perhaps I was looking badly)
+2. Simplify working with dependencies in the project
+3. Desire to write your own DI
+4. Have a simple DI in your arsenal (hopefully with a simple API)
 
 
+## 2. Library's features:
+
+DI container's main features:
+ - Initialization instance with name
+ - Initialization instance when singleton
+ - Separate container to scopes
 
 
-## 3. Основные компоненты DI
+## 3. Main components DI
 
-Библиотека состоит из трех основных компонентов:
+Library contain three main components:
  - Scope
  - Module
  - Binding
@@ -69,30 +59,33 @@ DI-контейнер – это библиотека, которая обесп
 
 ### 3.1. Scope
 
-**Scope** - это контейнер, который хранит все дерево зависимостей (scope,modules,instances).
-Через scope можно получить доступ к `instance`, для этого нужно вызвать метод `resolve<T>()` и указать тип объекта, а так же можно передать дополнительные параметры.
+**Scope** is a container that stores the entire dependency tree (scope, modules, instances).
+Through the scope, you can access the custom `instance`, for this you need to call the `resolve<T>()` method and specify the type of the object, and you can also pass additional parameters.
 
-**Scope** определяет область видимости и время жизни зависимостей. 
-
-**Scope** в приложении образуют древовидную иерархическую структуру. Например, у вас может быть **Scope** для всего приложения, и дочерний **Scope** для конкретного экрана или группы экранов.
-
-Чтобы получить объект **Scope**, его нужно “открыть”. Для простоты сделаем один **Scope** на всё приложение:
+Example:
 
 ```dart
-    final rootScope = CherryPick.openScope(named: 'appScope');
+    // open main scope
+    final rootScope =  Cherrypick.openRootScope();
+
+    // initializing scope with a custom module
+    rootScope.installModules([AppModule()]);
+
+    // takes custom instance
+    final str = rootScope.resolve<String>();
+    // or
+    final str = rootScope.tryResolve<String>();
+
+    // close main scope
+    Cherrypick.closeRootScope();
 ```
-
-Если повторно открыть **Scope** с тем же самым именем, мы получим уже существующий экземпляр **Scope**.
-
-Когда **Scope** перестанет быть нужным, его (и всё дерево “дочерних” **Scope**) можно будет закрыть с помощью метода `CherryPick.closeScope(name)`
-
 
 ### 3.2. Module
 
-**Module** - это набор правил, по которым CherryPick будет разрешать зависимости в конкретном `Scope`. Пользователь в своем модуле должен реализовать метод `void builder(Scope currentScope)`. Модули добавляются в `Scope` с помощью метода `scope.installModules(…)`, после чего `Scope` может разрешать зависимости по правилам, определённым в его модулях.
+**Module** is a container of user instances, and on the basis of which the user can create their modules. The user in his module must implement the `void builder (Scope currentScope)` method.
 
 
-Пример:
+Example:
 
 ```dart
 class AppModule extends Module {
@@ -106,42 +99,42 @@ class AppModule extends Module {
 
 ### 3.3. Binding
 
-**Binding** - по сути это конфигуратор  для  пользовательского instance, который содержит методы для конфигурирования зависимости.
+Binding is a custom instance configurator that contains methods for configuring a dependency.
 
-Есть два основных метода для инициализации пользовательского instance `toInstance()` и `toProvide()` и вспомогательных `withName()` и `singleton()`.
+There are two main methods for initializing a custom instance `toInstance ()` and `toProvide ()` and auxiliary `withName ()` and `singleton ()`.
 
-`toInstance()` - принимает готовый экземпляр
+`toInstance()` - takes a initialized instance
 
-`toProvide()` -  принимает функцию `provider` (конструктор экземпляра)
+`toProvide()` -  takes a `provider` function (instance constructor)
 
-`withName()` - принимает строку для именования экземпляра. По этому имени можно будет извлечь instance из  DI контейнера
+`withName()` - takes a string to name the instance. By this name, it will be possible to extract instance from the DI container
 
-`singleton()` -  устанавливает флаг в Binding, который говорит DI контейнеру, что зависимость одна.
+`singleton()` -  sets a flag in the Binding that tells the DI container that there is only one dependency.
 
-Пример:
+Example:
 
 ```dart
- // инициализация экземпляра текстовой строки через метод toInstance()
- bind<String>().toInstance("hello world");
+ // initializing a text string instance through a method toInstance()
+ Binding<String>().toInstance("hello world");
 
- // или
+ // or
 
- // инициализация экземпляра текстовой строки
- bind<String>().toProvide(() => "hello world");
+ // initializing a text string instance
+ Binding<String>().toProvide(() => "hello world");
 
- // инициализация экземпляра строки с именем
- bind<String>().withName("my_string").toInstance("hello world");
- // или
- bind<String>().withName("my_string").toProvide(() => "hello world");
+ // initializing an instance of a string named
+ Binding<String>().withName("my_string").toInstance("hello world");
+ // or
+ Binding<String>().withName("my_string").toProvide(() => "hello world");
 
- // инициализация экземпляра, как singleton
- bind<String>().toInstance("hello world");
- // или
- bind<String>().toProvide(() => "hello world").singleton();
+ // instance initialization like singleton
+ Binding<String>().toInstance("hello world");
+ // or
+ Binding<String>().toProvide(() => "hello world").singleton();
 
 ```
 
-## 4. Пример приложения
+## 4. Example
 
 
 ```dart
@@ -256,6 +249,6 @@ class ApiClientImpl implements ApiClient {
 ```
 
 
-## 5. Заключение
+## 5. Conclusion
 
-На текущий момент библиотека используется в трех коммерческих проектах и собственных пет проектах.
+Now this library used to in three commercial projects and own pet projects.

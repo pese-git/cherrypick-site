@@ -6,41 +6,41 @@ type: docs
 # CherryPick DI
 
 {{< columns >}}
-## DI-контейнер
+## DI-container
 
-DI-контейнер – это библиотека, которая обеспечивает функциональность механизма внедрения зависимостей.
+DI-container – this is library, when provide mechanism dependency injection.
 
 <--->
 
-## Возможности библиотеки
+## Library's features:
 
-Основные возможности DI контейнера:
- - Инициализация экземпляра с именем
- - Инициализация экземпляра как singleton
- - Разделение контейнера на области видимости (scopes)
+DI container's main features:
+ - Initialization instance with name
+ - Initialization instance when singleton
+ - Separate container to scopes
 {{< /columns >}}
 
 
-## Подключение библиотеки
+## Used to library
 
-### Установите библиотеку
+### Install library
 
-Запустите команду:
+Run command:
 
-Для Dart проекта:
+For Dart project:
 
 ```sh
 dart pub add cherrypick
 ```
 
 
-Для Flutter проекта:
+For Flutter project:
 
 ```sh
 flutter pub add cherrypick
 ```
 
-Команда добавит  строку  пакета  `cherrypick` (и запустит в фоне неявно dart pub get):
+Command added library  `cherrypick` (and run command `dart pub get` in background) to `pubspec.yaml`:
 
 ```yaml
 dependencies:
@@ -50,9 +50,9 @@ dependencies:
 
 
 
-### Импортируйте библиотеку
+### Import library
 
-Теперь в вашем коде Dart вы можете использовать:
+Now you can use library:
 
 ```dart
 import 'package:cherrypick/cherrypick.dart';
