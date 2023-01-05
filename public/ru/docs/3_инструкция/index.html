@@ -1,0 +1,338 @@
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Создайте первое приложение с применением CherryPick DI # Шаг 1. Создайте приложение # Используйте команду flutter create для создания нового проекта:
+flutter create sample_app cd sample_app Шаг 2. Добавьте зависимости # dependencies: cherrypick: ^1.0.2 # DI shared_preferences: ^2.0.13 flutter_bloc: ^8.0.1 equatable: ^2.0.3 flutter_form_builder: ^7.1.1 form_builder_validators: ^8.1.1 Шаг 3. Напишите простое приложение для редактирования пользователя # Добавьте модель пользователя в каталог проекта lib/user.dart: # import 'package:equatable/equatable.dart'; class User extends Equatable { final String name; final String email; const User({required this."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="Создайте первое приложение с применением CherryPick DI # Шаг 1. Создайте приложение # Используйте команду flutter create для создания нового проекта:
+flutter create sample_app cd sample_app Шаг 2. Добавьте зависимости # dependencies: cherrypick: ^1.0.2 # DI shared_preferences: ^2.0.13 flutter_bloc: ^8.0.1 equatable: ^2.0.3 flutter_form_builder: ^7.1.1 form_builder_validators: ^8.1.1 Шаг 3. Напишите простое приложение для редактирования пользователя # Добавьте модель пользователя в каталог проекта lib/user.dart: # import 'package:equatable/equatable.dart'; class User extends Equatable { final String name; final String email; const User({required this."><meta property="og:type" content="article"><meta property="og:url" content="https://pese-git.github.io/cherrypick-site/ru/docs/3_%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F/"><meta property="article:section" content="docs"><title>3 Инструкция | CherryPick DI</title><link rel=manifest href=/cherrypick-site/manifest.json><link rel=icon href=/cherrypick-site/favicon.png type=image/x-icon><link rel=stylesheet href=/cherrypick-site/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous><script defer src=/cherrypick-site/flexsearch.min.js></script>
+<script defer src=/cherrypick-site/ru.search.min.5e515a257b905ac2059bb24dfe80231fed95afc0bc73730d3c265640b5efa3d0.js integrity="sha256-XlFaJXuQWsIFm7JN/oAjH+2Vr8C8c3MNPCZWQLXvo9A=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/cherrypick-site/ru/><span>CherryPick DI</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Поиск aria-label=Поиск maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul class=book-languages><li><input type=checkbox id=languages class=toggle>
+<label for=languages class="flex justify-between"><a role=button class="flex align-center"><img src=/cherrypick-site/svg/translate.svg class=book-icon alt=Languages>
+Russian</a></label><ul><li><a href=https://pese-git.github.io/cherrypick-site/>English</a></li></ul></li></ul><ul><li><a href=/cherrypick-site/ru/docs/0_%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/>0 Информация</a></li><li><a href=/cherrypick-site/ru/docs/1_%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D1%8B/>1 Компоненты</a></li><li><a href=/cherrypick-site/ru/docs/2_%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0/>2 Установка</a></li><li><a href=/cherrypick-site/ru/docs/3_%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F/ class=active>3 Инструкция</a></li></ul><ul><li><a href=/cherrypick-site/ru/posts/>Blog</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/cherrypick-site/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>3 Инструкция</strong>
+<label for=toc-control><img src=/cherrypick-site/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#шаг-1-создайте-приложение>Шаг 1. Создайте приложение</a></li><li><a href=#шаг-2-добавьте-зависимости>Шаг 2. Добавьте зависимости</a></li><li><a href=#шаг-3-напишите-простое-приложение-для-редактирования-пользователя>Шаг 3. Напишите простое приложение для редактирования пользователя</a><ul><li><a href=#добавьте-модель-пользователя-в-каталог-проекта--libuserdart>Добавьте модель пользователя в каталог проекта <code>lib/user.dart</code>:</a></li><li><a href=#добавьте-описание-взаимодействия-с-репозиторием-пользователя-в-каталог-проекта--libuser_repositorydart>Добавьте описание взаимодействия с репозиторием пользователя в каталог проекта <code>lib/user_repository.dart</code>:</a></li><li><a href=#добавьте-реализацию-репозитория-пользователя-в-каталог-проекта--libpref_user_repositorydart>Добавьте реализацию репозитория пользователя в каталог проекта <code>lib/pref_user_repository.dart</code>:</a></li><li><a href=#добавьте-event-ы-для-userbloc--libblocuser_bloc_eventdart>Добавьте event-ы для <code>UserBloc</code> <code>lib/bloc/user_bloc_event.dart</code>:</a></li><li><a href=#добавьте-state-ы-для-userbloc--libblocuser_bloc_statedart>Добавьте state-ы для <code>UserBloc</code> <code>lib/bloc/user_bloc_state.dart</code>:</a></li><li><a href=#добавьте-блок-для-управления-репозиторием--libblocuser_blocdart>Добавьте блок для управления репозиторием <code>lib/bloc/user_bloc.dart</code>:</a></li><li><a href=#добавьте--экран-редактирования-пользователя---libuser_pagedart>Добавьте экран редактирования пользователя <code>lib/user_page.dart</code>:</a></li><li><a href=#добавьте--главный-виджет---libappdart>Добавьте главный виджет <code>lib/app.dart</code>:</a></li><li><a href=#добавьте-di-модуль--libdiuser_moduledart>Добавьте di модуль <code>lib/di/user_module.dart</code>:</a></li><li><a href=#добавьте-имя-scope--libdiscopesdart>Добавьте имя scope <code>lib/di/scopes.dart</code>:</a></li><li><a href=#добавьте--функцию-main-в--libmaindart>Добавьте функцию <code>main</code> в <code>lib/main.dart</code>:</a></li></ul></li><li><a href=#шаг-4-запустите-приложение>Шаг 4. Запустите приложение</a></li></ul></nav></aside></header><article class=markdown><h1 id=создайте--первое-приложение-с-применением-cherrypick-di>Создайте первое приложение с применением CherryPick DI
+<a class=anchor href=#%d1%81%d0%be%d0%b7%d0%b4%d0%b0%d0%b9%d1%82%d0%b5--%d0%bf%d0%b5%d1%80%d0%b2%d0%be%d0%b5-%d0%bf%d1%80%d0%b8%d0%bb%d0%be%d0%b6%d0%b5%d0%bd%d0%b8%d0%b5-%d1%81-%d0%bf%d1%80%d0%b8%d0%bc%d0%b5%d0%bd%d0%b5%d0%bd%d0%b8%d0%b5%d0%bc-cherrypick-di>#</a></h1><h2 id=шаг-1-создайте-приложение>Шаг 1. Создайте приложение
+<a class=anchor href=#%d1%88%d0%b0%d0%b3-1-%d1%81%d0%be%d0%b7%d0%b4%d0%b0%d0%b9%d1%82%d0%b5-%d0%bf%d1%80%d0%b8%d0%bb%d0%be%d0%b6%d0%b5%d0%bd%d0%b8%d0%b5>#</a></h2><p>Используйте команду <code>flutter create</code> для создания нового проекта:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>flutter create sample_app
+</span></span><span style=display:flex><span>cd sample_app
+</span></span></code></pre></div><h2 id=шаг-2-добавьте-зависимости>Шаг 2. Добавьте зависимости
+<a class=anchor href=#%d1%88%d0%b0%d0%b3-2-%d0%b4%d0%be%d0%b1%d0%b0%d0%b2%d1%8c%d1%82%d0%b5-%d0%b7%d0%b0%d0%b2%d0%b8%d1%81%d0%b8%d0%bc%d0%be%d1%81%d1%82%d0%b8>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>dependencies</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>cherrypick</span>: <span style=color:#ae81ff>^1.0.2</span> <span style=color:#75715e># DI</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>shared_preferences</span>: <span style=color:#ae81ff>^2.0.13</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>flutter_bloc</span>: <span style=color:#ae81ff>^8.0.1</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>equatable</span>: <span style=color:#ae81ff>^2.0.3</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>flutter_form_builder</span>: <span style=color:#ae81ff>^7.1.1</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>form_builder_validators</span>: <span style=color:#ae81ff>^8.1.1</span>
+</span></span></code></pre></div><h2 id=шаг-3-напишите-простое-приложение-для-редактирования-пользователя>Шаг 3. Напишите простое приложение для редактирования пользователя
+<a class=anchor href=#%d1%88%d0%b0%d0%b3-3-%d0%bd%d0%b0%d0%bf%d0%b8%d1%88%d0%b8%d1%82%d0%b5-%d0%bf%d1%80%d0%be%d1%81%d1%82%d0%be%d0%b5-%d0%bf%d1%80%d0%b8%d0%bb%d0%be%d0%b6%d0%b5%d0%bd%d0%b8%d0%b5-%d0%b4%d0%bb%d1%8f-%d1%80%d0%b5%d0%b4%d0%b0%d0%ba%d1%82%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d1%8f-%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d0%be%d0%b2%d0%b0%d1%82%d0%b5%d0%bb%d1%8f>#</a></h2><h3 id=добавьте-модель-пользователя-в-каталог-проекта--libuserdart>Добавьте модель пользователя в каталог проекта <code>lib/user.dart</code>:
+<a class=anchor href=#%d0%b4%d0%be%d0%b1%d0%b0%d0%b2%d1%8c%d1%82%d0%b5-%d0%bc%d0%be%d0%b4%d0%b5%d0%bb%d1%8c-%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d0%be%d0%b2%d0%b0%d1%82%d0%b5%d0%bb%d1%8f-%d0%b2-%d0%ba%d0%b0%d1%82%d0%b0%d0%bb%d0%be%d0%b3-%d0%bf%d1%80%d0%be%d0%b5%d0%ba%d1%82%d0%b0--libuserdart>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:equatable/equatable.dart&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>User</span> <span style=color:#66d9ef>extends</span> Equatable {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>String</span> name;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>String</span> email;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> User({<span style=color:#66d9ef>required</span> <span style=color:#66d9ef>this</span>.name, <span style=color:#66d9ef>required</span> <span style=color:#66d9ef>this</span>.email});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> User.empty()
+</span></span><span style=display:flex><span>      <span style=color:#f92672>:</span> name <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>,
+</span></span><span style=display:flex><span>        email <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span>override
+</span></span><span style=display:flex><span>  List<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>Object</span><span style=color:#f92672>?&gt;</span> <span style=color:#66d9ef>get</span> props <span style=color:#f92672>=&gt;</span> [name, email];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span>override
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>bool</span><span style=color:#f92672>?</span> <span style=color:#66d9ef>get</span> stringify <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=добавьте-описание-взаимодействия-с-репозиторием-пользователя-в-каталог-проекта--libuser_repositorydart>Добавьте описание взаимодействия с репозиторием пользователя в каталог проекта <code>lib/user_repository.dart</code>:
+<a class=anchor href=#%d0%b4%d0%be%d0%b1%d0%b0%d0%b2%d1%8c%d1%82%d0%b5-%d0%be%d0%bf%d0%b8%d1%81%d0%b0%d0%bd%d0%b8%d0%b5-%d0%b2%d0%b7%d0%b0%d0%b8%d0%bc%d0%be%d0%b4%d0%b5%d0%b9%d1%81%d1%82%d0%b2%d0%b8%d1%8f-%d1%81-%d1%80%d0%b5%d0%bf%d0%be%d0%b7%d0%b8%d1%82%d0%be%d1%80%d0%b8%d0%b5%d0%bc-%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d0%be%d0%b2%d0%b0%d1%82%d0%b5%d0%bb%d1%8f-%d0%b2-%d0%ba%d0%b0%d1%82%d0%b0%d0%bb%d0%be%d0%b3-%d0%bf%d1%80%d0%be%d0%b5%d0%ba%d1%82%d0%b0--libuser_repositorydart>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;./user.dart&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>abstract</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserRepository</span> {
+</span></span><span style=display:flex><span>  User getUser();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>void</span> saveUser(User user);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=добавьте-реализацию-репозитория-пользователя-в-каталог-проекта--libpref_user_repositorydart>Добавьте реализацию репозитория пользователя в каталог проекта <code>lib/pref_user_repository.dart</code>:
+<a class=anchor href=#%d0%b4%d0%be%d0%b1%d0%b0%d0%b2%d1%8c%d1%82%d0%b5-%d1%80%d0%b5%d0%b0%d0%bb%d0%b8%d0%b7%d0%b0%d1%86%d0%b8%d1%8e-%d1%80%d0%b5%d0%bf%d0%be%d0%b7%d0%b8%d1%82%d0%be%d1%80%d0%b8%d1%8f-%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d0%be%d0%b2%d0%b0%d1%82%d0%b5%d0%bb%d1%8f-%d0%b2-%d0%ba%d0%b0%d1%82%d0%b0%d0%bb%d0%be%d0%b3-%d0%bf%d1%80%d0%be%d0%b5%d0%ba%d1%82%d0%b0--libpref_user_repositorydart>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:shared_preferences/shared_preferences.dart&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;user.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;user_repository.dart&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PrefUserRepository</span> <span style=color:#66d9ef>extends</span> UserRepository {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> SharedPreferences sharedPreferences;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>String</span> keyName <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;KEY_NAME&#34;</span>;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>String</span> keyEmail <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;KEY_EMAIL&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  PrefUserRepository({<span style=color:#66d9ef>required</span> <span style=color:#66d9ef>this</span>.sharedPreferences});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span>override
+</span></span><span style=display:flex><span>  User getUser() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> User(
+</span></span><span style=display:flex><span>      name: sharedPreferences.getString(keyName) <span style=color:#f92672>??</span> <span style=color:#e6db74>&#39;&#39;</span>,
+</span></span><span style=display:flex><span>      email: sharedPreferences.getString(keyEmail) <span style=color:#f92672>??</span> <span style=color:#e6db74>&#39;&#39;</span>,
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span>override
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>void</span> saveUser(User user) <span style=color:#66d9ef>async</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>await</span> sharedPreferences.setString(keyName, user.name);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>await</span> sharedPreferences.setString(keyEmail, user.email);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=добавьте-event-ы-для-userbloc--libblocuser_bloc_eventdart>Добавьте event-ы для <code>UserBloc</code> <code>lib/bloc/user_bloc_event.dart</code>:
+<a class=anchor href=#%d0%b4%d0%be%d0%b1%d0%b0%d0%b2%d1%8c%d1%82%d0%b5-event-%d1%8b-%d0%b4%d0%bb%d1%8f-userbloc--libblocuser_bloc_eventdart>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:equatable/equatable.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:sample_app/user.dart&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>abstract</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserBlocEvent</span> <span style=color:#66d9ef>extends</span> Equatable {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> UserBlocEvent();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>factory</span> UserBlocEvent.getUser() <span style=color:#f92672>=</span> GetUserEvent;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>factory</span> UserBlocEvent.saveUser(User user) <span style=color:#f92672>=</span> SaveUserEvent;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>GetUserEvent</span> <span style=color:#66d9ef>extends</span> UserBlocEvent {
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span>override
+</span></span><span style=display:flex><span>  List<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>Object</span><span style=color:#f92672>?&gt;</span> <span style=color:#66d9ef>get</span> props <span style=color:#f92672>=&gt;</span> [];
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>SaveUserEvent</span> <span style=color:#66d9ef>extends</span> UserBlocEvent {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> User user;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> SaveUserEvent(<span style=color:#66d9ef>this</span>.user);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span>override
+</span></span><span style=display:flex><span>  List<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>Object</span><span style=color:#f92672>?&gt;</span> <span style=color:#66d9ef>get</span> props <span style=color:#f92672>=&gt;</span> [user];
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=добавьте-state-ы-для-userbloc--libblocuser_bloc_statedart>Добавьте state-ы для <code>UserBloc</code> <code>lib/bloc/user_bloc_state.dart</code>:
+<a class=anchor href=#%d0%b4%d0%be%d0%b1%d0%b0%d0%b2%d1%8c%d1%82%d0%b5-state-%d1%8b-%d0%b4%d0%bb%d1%8f-userbloc--libblocuser_bloc_statedart>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:equatable/equatable.dart&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;../user.dart&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>abstract</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserBlocState</span> <span style=color:#66d9ef>extends</span> Equatable {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> User user;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> UserBlocState(<span style=color:#66d9ef>this</span>.user);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>factory</span> UserBlocState.init(User user) <span style=color:#f92672>=</span> InitState;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>factory</span> UserBlocState.successGetUser(User user) <span style=color:#f92672>=</span> SuccessGetUserState;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>factory</span> UserBlocState.successSaveUser(User user) <span style=color:#f92672>=</span> SuccessSaveUserState;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span>override
+</span></span><span style=display:flex><span>  List<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>Object</span><span style=color:#f92672>?&gt;</span> <span style=color:#66d9ef>get</span> props <span style=color:#f92672>=&gt;</span> [user];
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>InitState</span> <span style=color:#66d9ef>extends</span> UserBlocState {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> InitState(User user) <span style=color:#f92672>:</span> <span style=color:#66d9ef>super</span>(user);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>LoadingGetUserState</span> <span style=color:#66d9ef>extends</span> UserBlocState {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> LoadingGetUserState(User user) <span style=color:#f92672>:</span> <span style=color:#66d9ef>super</span>(user);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>SuccessGetUserState</span> <span style=color:#66d9ef>extends</span> UserBlocState {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> SuccessGetUserState(User user) <span style=color:#f92672>:</span> <span style=color:#66d9ef>super</span>(user);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>SuccessSaveUserState</span> <span style=color:#66d9ef>extends</span> UserBlocState {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> SuccessSaveUserState(User user) <span style=color:#f92672>:</span> <span style=color:#66d9ef>super</span>(user);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=добавьте-блок-для-управления-репозиторием--libblocuser_blocdart>Добавьте блок для управления репозиторием <code>lib/bloc/user_bloc.dart</code>:
+<a class=anchor href=#%d0%b4%d0%be%d0%b1%d0%b0%d0%b2%d1%8c%d1%82%d0%b5-%d0%b1%d0%bb%d0%be%d0%ba-%d0%b4%d0%bb%d1%8f-%d1%83%d0%bf%d1%80%d0%b0%d0%b2%d0%bb%d0%b5%d0%bd%d0%b8%d1%8f-%d1%80%d0%b5%d0%bf%d0%be%d0%b7%d0%b8%d1%82%d0%be%d1%80%d0%b8%d0%b5%d0%bc--libblocuser_blocdart>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:flutter/material.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:flutter_bloc/flutter_bloc.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:sample_app/bloc/user_bloc_event.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:sample_app/bloc/user_bloc_state.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:sample_app/user_repository.dart&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;../user.dart&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserBloc</span> <span style=color:#66d9ef>extends</span> Bloc<span style=color:#f92672>&lt;</span>UserBlocEvent, UserBlocState<span style=color:#f92672>&gt;</span> {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> UserRepository userRepository;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  UserBloc({
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>required</span> <span style=color:#66d9ef>this</span>.userRepository,
+</span></span><span style=display:flex><span>  }) <span style=color:#f92672>:</span> <span style=color:#66d9ef>super</span>(<span style=color:#66d9ef>const</span> UserBlocState.init(User.empty())) {
+</span></span><span style=display:flex><span>    on<span style=color:#f92672>&lt;</span>GetUserEvent<span style=color:#f92672>&gt;</span>(_onGetUserEvent);
+</span></span><span style=display:flex><span>    on<span style=color:#f92672>&lt;</span>SaveUserEvent<span style=color:#f92672>&gt;</span>(_onSaveUserEvent);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>void</span> _onGetUserEvent(GetUserEvent event, emit) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>final</span> user <span style=color:#f92672>=</span> userRepository.getUser();
+</span></span><span style=display:flex><span>    emit(UserBlocState.successGetUser(user));
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>void</span> _onSaveUserEvent(SaveUserEvent event, emit) {
+</span></span><span style=display:flex><span>    userRepository.saveUser(event.user);
+</span></span><span style=display:flex><span>    emit(UserBlocState.successSaveUser(event.user));
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=добавьте--экран-редактирования-пользователя---libuser_pagedart>Добавьте экран редактирования пользователя <code>lib/user_page.dart</code>:
+<a class=anchor href=#%d0%b4%d0%be%d0%b1%d0%b0%d0%b2%d1%8c%d1%82%d0%b5--%d1%8d%d0%ba%d1%80%d0%b0%d0%bd-%d1%80%d0%b5%d0%b4%d0%b0%d0%ba%d1%82%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d1%8f-%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d0%be%d0%b2%d0%b0%d1%82%d0%b5%d0%bb%d1%8f---libuser_pagedart>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:cherrypick/cherrypick.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:flutter/material.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:flutter_bloc/flutter_bloc.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:flutter_form_builder/flutter_form_builder.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:form_builder_validators/form_builder_validators.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:sample_app/bloc/user_bloc.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:sample_app/bloc/user_bloc_event.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:sample_app/bloc/user_bloc_state.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:sample_app/di/scopes.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:sample_app/user.dart&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserPage</span> <span style=color:#66d9ef>extends</span> StatelessWidget {
+</span></span><span style=display:flex><span>  UserPage({Key<span style=color:#f92672>?</span> key, <span style=color:#66d9ef>required</span> <span style=color:#66d9ef>this</span>.title}) <span style=color:#f92672>:</span> <span style=color:#66d9ef>super</span>(key: key);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>String</span> title;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> _formKey <span style=color:#f92672>=</span> GlobalKey<span style=color:#f92672>&lt;</span>FormBuilderState<span style=color:#f92672>&gt;</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span>override
+</span></span><span style=display:flex><span>  Widget build(BuildContext context) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> BlocProvider<span style=color:#f92672>&lt;</span>UserBloc<span style=color:#f92672>&gt;</span>(
+</span></span><span style=display:flex><span>      create: (context) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> CherryPick.openScope(scopeName: Scopes.APP_SCOPE)
+</span></span><span style=display:flex><span>            .resolve<span style=color:#f92672>&lt;</span>UserBloc<span style=color:#f92672>&gt;</span>();
+</span></span><span style=display:flex><span>      },
+</span></span><span style=display:flex><span>      child: BlocBuilder<span style=color:#f92672>&lt;</span>UserBloc, UserBlocState<span style=color:#f92672>&gt;</span>(
+</span></span><span style=display:flex><span>        builder: ((context, state) {
+</span></span><span style=display:flex><span>          <span style=color:#66d9ef>return</span> Scaffold(
+</span></span><span style=display:flex><span>            appBar: AppBar(
+</span></span><span style=display:flex><span>              title: Text(title),
+</span></span><span style=display:flex><span>            ),
+</span></span><span style=display:flex><span>            body: Column(
+</span></span><span style=display:flex><span>              children: [
+</span></span><span style=display:flex><span>                Text(state.user.toString()),
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>const</span> SizedBox(width: <span style=color:#ae81ff>20</span>),
+</span></span><span style=display:flex><span>                FormBuilder(
+</span></span><span style=display:flex><span>                  key: _formKey,
+</span></span><span style=display:flex><span>                  child: Column(
+</span></span><span style=display:flex><span>                    children: [
+</span></span><span style=display:flex><span>                      FormBuilderTextField(
+</span></span><span style=display:flex><span>                        name: <span style=color:#e6db74>&#39;name&#39;</span>,
+</span></span><span style=display:flex><span>                        decoration: <span style=color:#66d9ef>const</span> InputDecoration(labelText: <span style=color:#e6db74>&#39;Name&#39;</span>),
+</span></span><span style=display:flex><span>                        keyboardType: TextInputType.text,
+</span></span><span style=display:flex><span>                        validator: FormBuilderValidators.compose([
+</span></span><span style=display:flex><span>                          FormBuilderValidators.<span style=color:#66d9ef>required</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>String</span><span style=color:#f92672>&gt;</span>(),
+</span></span><span style=display:flex><span>                        ]),
+</span></span><span style=display:flex><span>                      ),
+</span></span><span style=display:flex><span>                      FormBuilderTextField(
+</span></span><span style=display:flex><span>                        name: <span style=color:#e6db74>&#39;email&#39;</span>,
+</span></span><span style=display:flex><span>                        decoration: <span style=color:#66d9ef>const</span> InputDecoration(labelText: <span style=color:#e6db74>&#39;Email&#39;</span>),
+</span></span><span style=display:flex><span>                        keyboardType: TextInputType.text,
+</span></span><span style=display:flex><span>                        validator: FormBuilderValidators.compose([
+</span></span><span style=display:flex><span>                          FormBuilderValidators.<span style=color:#66d9ef>required</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>String</span><span style=color:#f92672>&gt;</span>(),
+</span></span><span style=display:flex><span>                        ]),
+</span></span><span style=display:flex><span>                      ),
+</span></span><span style=display:flex><span>                    ],
+</span></span><span style=display:flex><span>                  ),
+</span></span><span style=display:flex><span>                ),
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>const</span> SizedBox(width: <span style=color:#ae81ff>20</span>),
+</span></span><span style=display:flex><span>                MaterialButton(
+</span></span><span style=display:flex><span>                  color: Theme.of(context).colorScheme.secondary,
+</span></span><span style=display:flex><span>                  child: <span style=color:#66d9ef>const</span> Text(
+</span></span><span style=display:flex><span>                    <span style=color:#e6db74>&#34;Save&#34;</span>,
+</span></span><span style=display:flex><span>                    style: TextStyle(color: Colors.white),
+</span></span><span style=display:flex><span>                  ),
+</span></span><span style=display:flex><span>                  onPressed: () {
+</span></span><span style=display:flex><span>                    _formKey.currentState<span style=color:#f92672>?</span>.saveAndValidate();
+</span></span><span style=display:flex><span>                    BlocProvider.of<span style=color:#f92672>&lt;</span>UserBloc<span style=color:#f92672>&gt;</span>(context).add(
+</span></span><span style=display:flex><span>                      UserBlocEvent.saveUser(
+</span></span><span style=display:flex><span>                        User(
+</span></span><span style=display:flex><span>                          name: _formKey.currentState<span style=color:#f92672>?</span>.fields[<span style=color:#e6db74>&#39;name&#39;</span>]<span style=color:#f92672>?</span>.value <span style=color:#f92672>??</span>
+</span></span><span style=display:flex><span>                              <span style=color:#e6db74>&#39;&#39;</span>,
+</span></span><span style=display:flex><span>                          email:
+</span></span><span style=display:flex><span>                              _formKey.currentState<span style=color:#f92672>?</span>.fields[<span style=color:#e6db74>&#39;email&#39;</span>]<span style=color:#f92672>?</span>.value <span style=color:#f92672>??</span>
+</span></span><span style=display:flex><span>                                  <span style=color:#e6db74>&#39;&#39;</span>,
+</span></span><span style=display:flex><span>                        ),
+</span></span><span style=display:flex><span>                      ),
+</span></span><span style=display:flex><span>                    );
+</span></span><span style=display:flex><span>                  },
+</span></span><span style=display:flex><span>                ),
+</span></span><span style=display:flex><span>              ],
+</span></span><span style=display:flex><span>            ),
+</span></span><span style=display:flex><span>          );
+</span></span><span style=display:flex><span>        }),
+</span></span><span style=display:flex><span>      ),
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=добавьте--главный-виджет---libappdart>Добавьте главный виджет <code>lib/app.dart</code>:
+<a class=anchor href=#%d0%b4%d0%be%d0%b1%d0%b0%d0%b2%d1%8c%d1%82%d0%b5--%d0%b3%d0%bb%d0%b0%d0%b2%d0%bd%d1%8b%d0%b9-%d0%b2%d0%b8%d0%b4%d0%b6%d0%b5%d1%82---libappdart>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:flutter/material.dart&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;user_page.dart&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>App</span> <span style=color:#66d9ef>extends</span> StatelessWidget {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> App({Key<span style=color:#f92672>?</span> key}) <span style=color:#f92672>:</span> <span style=color:#66d9ef>super</span>(key: key);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span>override
+</span></span><span style=display:flex><span>  Widget build(BuildContext context) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> MaterialApp(
+</span></span><span style=display:flex><span>      title: <span style=color:#e6db74>&#39;Sample App&#39;</span>,
+</span></span><span style=display:flex><span>      theme: ThemeData(
+</span></span><span style=display:flex><span>        primarySwatch: Colors.blue,
+</span></span><span style=display:flex><span>      ),
+</span></span><span style=display:flex><span>      home: UserPage(title: <span style=color:#e6db74>&#39;Sample App&#39;</span>),
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=добавьте-di-модуль--libdiuser_moduledart>Добавьте di модуль <code>lib/di/user_module.dart</code>:
+<a class=anchor href=#%d0%b4%d0%be%d0%b1%d0%b0%d0%b2%d1%8c%d1%82%d0%b5-di-%d0%bc%d0%be%d0%b4%d1%83%d0%bb%d1%8c--libdiuser_moduledart>#</a></h3><p>В модуле <code>UserModule</code> описываем все зависимости. Из кода видно что <code>UserBloc</code> зависит от <code>UserRepository</code>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:cherrypick/cherrypick.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:sample_app/bloc/user_bloc.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:sample_app/pref_user_repository.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:sample_app/user_repository.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:shared_preferences/shared_preferences.dart&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserModule</span> <span style=color:#66d9ef>extends</span> Module {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> SharedPreferences sharedPreferences;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  UserModule({<span style=color:#66d9ef>required</span> <span style=color:#66d9ef>this</span>.sharedPreferences});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span>override
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>void</span> builder(Scope currentScope) {
+</span></span><span style=display:flex><span>    bind<span style=color:#f92672>&lt;</span>UserRepository<span style=color:#f92672>&gt;</span>()
+</span></span><span style=display:flex><span>        .toProvide(
+</span></span><span style=display:flex><span>            () <span style=color:#f92672>=&gt;</span> PrefUserRepository(sharedPreferences: sharedPreferences))
+</span></span><span style=display:flex><span>        .singleton();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    bind<span style=color:#f92672>&lt;</span>UserBloc<span style=color:#f92672>&gt;</span>().toProvide(
+</span></span><span style=display:flex><span>      () <span style=color:#f92672>=&gt;</span> UserBloc(
+</span></span><span style=display:flex><span>        userRepository: currentScope.resolve<span style=color:#f92672>&lt;</span>UserRepository<span style=color:#f92672>&gt;</span>(),
+</span></span><span style=display:flex><span>      ),
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=добавьте-имя-scope--libdiscopesdart>Добавьте имя scope <code>lib/di/scopes.dart</code>:
+<a class=anchor href=#%d0%b4%d0%be%d0%b1%d0%b0%d0%b2%d1%8c%d1%82%d0%b5-%d0%b8%d0%bc%d1%8f-scope--libdiscopesdart>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Scopes</span> {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>String</span> appScope <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;appScope&#39;</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=добавьте--функцию-main-в--libmaindart>Добавьте функцию <code>main</code> в <code>lib/main.dart</code>:
+<a class=anchor href=#%d0%b4%d0%be%d0%b1%d0%b0%d0%b2%d1%8c%d1%82%d0%b5--%d1%84%d1%83%d0%bd%d0%ba%d1%86%d0%b8%d1%8e-main-%d0%b2--libmaindart>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:cherrypick/cherrypick.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:flutter/material.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:sample_app/di/user_module.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:sample_app/di/scopes.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:shared_preferences/shared_preferences.dart&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;./app.dart&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> main() <span style=color:#66d9ef>async</span> {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> sharedPreferences <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> SharedPreferences.getInstance();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> appScope <span style=color:#f92672>=</span> CherryPick.openScope(scopeName: Scopes.appScope);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  appScope.installModules(
+</span></span><span style=display:flex><span>    [
+</span></span><span style=display:flex><span>      UserModule(sharedPreferences: sharedPreferences),
+</span></span><span style=display:flex><span>    ],
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  runApp(<span style=color:#66d9ef>const</span> App());
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Если посмотреть на тело функции <code>main()</code>, то можно увидеть, что инициализация di происходит в два этапа:</p><p>1 Открытие <code>scope</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span> <span style=color:#66d9ef>final</span> appScope <span style=color:#f92672>=</span> CherryPick.openScope(scopeName: Scopes.appScope);
+</span></span></code></pre></div><p>1 Инициализация модуля <code>UserModule</code> в scope <code>appScope</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span>appScope.installModules(
+</span></span><span style=display:flex><span>    [
+</span></span><span style=display:flex><span>      UserModule(sharedPreferences: sharedPreferences),
+</span></span><span style=display:flex><span>    ],
+</span></span><span style=display:flex><span>  );
+</span></span></code></pre></div><h2 id=шаг-4-запустите-приложение>Шаг 4. Запустите приложение
+<a class=anchor href=#%d1%88%d0%b0%d0%b3-4-%d0%b7%d0%b0%d0%bf%d1%83%d1%81%d1%82%d0%b8%d1%82%d0%b5-%d0%bf%d1%80%d0%b8%d0%bb%d0%be%d0%b6%d0%b5%d0%bd%d0%b8%d0%b5>#</a></h2><p>Используйте команду <code>flutter run</code> для запуска приложения:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>flutter run
+</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#шаг-1-создайте-приложение>Шаг 1. Создайте приложение</a></li><li><a href=#шаг-2-добавьте-зависимости>Шаг 2. Добавьте зависимости</a></li><li><a href=#шаг-3-напишите-простое-приложение-для-редактирования-пользователя>Шаг 3. Напишите простое приложение для редактирования пользователя</a><ul><li><a href=#добавьте-модель-пользователя-в-каталог-проекта--libuserdart>Добавьте модель пользователя в каталог проекта <code>lib/user.dart</code>:</a></li><li><a href=#добавьте-описание-взаимодействия-с-репозиторием-пользователя-в-каталог-проекта--libuser_repositorydart>Добавьте описание взаимодействия с репозиторием пользователя в каталог проекта <code>lib/user_repository.dart</code>:</a></li><li><a href=#добавьте-реализацию-репозитория-пользователя-в-каталог-проекта--libpref_user_repositorydart>Добавьте реализацию репозитория пользователя в каталог проекта <code>lib/pref_user_repository.dart</code>:</a></li><li><a href=#добавьте-event-ы-для-userbloc--libblocuser_bloc_eventdart>Добавьте event-ы для <code>UserBloc</code> <code>lib/bloc/user_bloc_event.dart</code>:</a></li><li><a href=#добавьте-state-ы-для-userbloc--libblocuser_bloc_statedart>Добавьте state-ы для <code>UserBloc</code> <code>lib/bloc/user_bloc_state.dart</code>:</a></li><li><a href=#добавьте-блок-для-управления-репозиторием--libblocuser_blocdart>Добавьте блок для управления репозиторием <code>lib/bloc/user_bloc.dart</code>:</a></li><li><a href=#добавьте--экран-редактирования-пользователя---libuser_pagedart>Добавьте экран редактирования пользователя <code>lib/user_page.dart</code>:</a></li><li><a href=#добавьте--главный-виджет---libappdart>Добавьте главный виджет <code>lib/app.dart</code>:</a></li><li><a href=#добавьте-di-модуль--libdiuser_moduledart>Добавьте di модуль <code>lib/di/user_module.dart</code>:</a></li><li><a href=#добавьте-имя-scope--libdiscopesdart>Добавьте имя scope <code>lib/di/scopes.dart</code>:</a></li><li><a href=#добавьте--функцию-main-в--libmaindart>Добавьте функцию <code>main</code> в <code>lib/main.dart</code>:</a></li></ul></li><li><a href=#шаг-4-запустите-приложение>Шаг 4. Запустите приложение</a></li></ul></nav></div></aside></main></body></html>

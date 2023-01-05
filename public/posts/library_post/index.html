@@ -1,0 +1,168 @@
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="CherryPick DI # DI-container – this is library, when provide mechanism dependency injection.
+Content # Preface Library features Library components 3.1. scope 3.2. module 3.3. Binding Usage example Conclusion 1. Preface # The first attempts to develop our own DI for pet projects written on the Flutter SDK were started at the start of 2020.
+Several reasons prompted me to take this step:
+At that time, I did not find DI in pub."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content="CherryPick DI"><meta property="og:description" content="CherryPick DI # DI-container – this is library, when provide mechanism dependency injection.
+Content # Preface Library features Library components 3.1. scope 3.2. module 3.3. Binding Usage example Conclusion 1. Preface # The first attempts to develop our own DI for pet projects written on the Flutter SDK were started at the start of 2020.
+Several reasons prompted me to take this step:
+At that time, I did not find DI in pub."><meta property="og:type" content="article"><meta property="og:url" content="https://pese-git.github.io/cherrypick-site/posts/library_post/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-05-07T00:00:00+00:00"><meta property="article:modified_time" content="2022-05-07T00:00:00+00:00"><title>CherryPick DI | CherryPick DI</title><link rel=manifest href=/cherrypick-site/manifest.json><link rel=icon href=/cherrypick-site/favicon.png type=image/x-icon><link rel=alternate hreflang=en-us href=https://pese-git.github.io/cherrypick-site/ru/posts/library_post/ title="CherryPick DI"><link rel=stylesheet href=/cherrypick-site/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous><script defer src=/cherrypick-site/flexsearch.min.js></script>
+<script defer src=/cherrypick-site/en.search.min.13870193205e4602ec6648e62288b4d8221c6a51f946d5b167e5a79e05da5084.js integrity="sha256-E4cBkyBeRgLsZkjmIoi02CIcalH5RtWxZ+WnngXaUIQ=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/cherrypick-site/><span>CherryPick DI</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul class=book-languages><li><input type=checkbox id=languages class=toggle>
+<label for=languages class="flex justify-between"><a role=button class="flex align-center"><img src=/cherrypick-site/svg/translate.svg class=book-icon alt=Languages>
+English</a></label><ul><li><a href=https://pese-git.github.io/cherrypick-site/ru/posts/library_post/>Russian</a></li></ul></li></ul><ul><li><a href=/cherrypick-site/docs/0_information/>0 Information</a></li><li><a href=/cherrypick-site/docs/1_components/>1 Components</a></li><li><a href=/cherrypick-site/docs/2_install/>2 Install</a></li><li><a href=/cherrypick-site/docs/3_tutorial/>3 Tutorial</a></li></ul><ul><li><a href=/cherrypick-site/posts/>Blog</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/cherrypick-site/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>CherryPick DI</strong>
+<label for=toc-control><img src=/cherrypick-site/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#content>Content</a></li><li><a href=#1-preface>1. Preface</a></li><li><a href=#2-librarys-features>2. Library&rsquo;s features:</a></li><li><a href=#3-main-components-di>3. Main components DI</a><ul><li><a href=#31-scope>3.1. Scope</a></li><li><a href=#32-module>3.2. Module</a></li><li><a href=#33-binding>3.3. Binding</a></li></ul></li><li><a href=#4-example>4. Example</a></li><li><a href=#5-conclusion>5. Conclusion</a></li></ul></nav></aside></header><article class=markdown><h1><a href=/cherrypick-site/posts/library_post/>CherryPick DI</a></h1><h5>May 7, 2022</h5><h1 id=cherrypick-di>CherryPick DI
+<a class=anchor href=#cherrypick-di>#</a></h1><p>DI-container – this is library, when provide mechanism dependency injection.</p><h2 id=content>Content
+<a class=anchor href=#content>#</a></h2><ol><li>Preface</li><li>Library features</li><li>Library components<ul><li>3.1. scope</li><li>3.2. module</li><li>3.3. Binding</li></ul></li><li>Usage example</li><li>Conclusion</li></ol><h2 id=1-preface>1. Preface
+<a class=anchor href=#1-preface>#</a></h2><p>The first attempts to develop our own DI for pet projects written on the Flutter SDK were started at the start of 2020.</p><p>Several reasons prompted me to take this step:</p><ol><li>At that time, I did not find DI in pub.dev with the ability to divide the container into scope (perhaps I was looking badly)</li><li>Simplify working with dependencies in the project</li><li>Desire to write your own DI</li><li>Have a simple DI in your arsenal (hopefully with a simple API)</li></ol><h2 id=2-librarys-features>2. Library&rsquo;s features:
+<a class=anchor href=#2-librarys-features>#</a></h2><p>DI container&rsquo;s main features:</p><ul><li>Initialization instance with name</li><li>Initialization instance when singleton</li><li>Separate container to scopes</li></ul><h2 id=3-main-components-di>3. Main components DI
+<a class=anchor href=#3-main-components-di>#</a></h2><p>Library contain three main components:</p><ul><li>Scope</li><li>Module</li><li>Binding</li></ul><h3 id=31-scope>3.1. Scope
+<a class=anchor href=#31-scope>#</a></h3><p><strong>Scope</strong> is a container that stores the entire dependency tree (scope, modules, instances).
+Through the scope, you can access the custom <code>instance</code>, for this you need to call the <code>resolve&lt;T>()</code> method and specify the type of the object, and you can also pass additional parameters.</p><p>Example:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span>    <span style=color:#75715e>// open main scope
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>final</span> rootScope <span style=color:#f92672>=</span>  Cherrypick.openRootScope();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// initializing scope with a custom module
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    rootScope.installModules([AppModule()]);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// takes custom instance
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>final</span> str <span style=color:#f92672>=</span> rootScope.resolve<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>String</span><span style=color:#f92672>&gt;</span>();
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// or
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>final</span> str <span style=color:#f92672>=</span> rootScope.tryResolve<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>String</span><span style=color:#f92672>&gt;</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// close main scope
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    Cherrypick.closeRootScope();
+</span></span></code></pre></div><h3 id=32-module>3.2. Module
+<a class=anchor href=#32-module>#</a></h3><p><strong>Module</strong> is a container of user instances, and on the basis of which the user can create their modules. The user in his module must implement the <code>void builder (Scope currentScope)</code> method.</p><p>Example:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppModule</span> <span style=color:#66d9ef>extends</span> Module {
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span>override
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>void</span> builder(Scope currentScope) {
+</span></span><span style=display:flex><span>    bind<span style=color:#f92672>&lt;</span>ApiClient<span style=color:#f92672>&gt;</span>().toInstance(ApiClientMock());
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=33-binding>3.3. Binding
+<a class=anchor href=#33-binding>#</a></h3><p>Binding is a custom instance configurator that contains methods for configuring a dependency.</p><p>There are two main methods for initializing a custom instance <code>toInstance ()</code> and <code>toProvide ()</code> and auxiliary <code>withName ()</code> and <code>singleton ()</code>.</p><p><code>toInstance()</code> - takes a initialized instance</p><p><code>toProvide()</code> -  takes a <code>provider</code> function (instance constructor)</p><p><code>withName()</code> - takes a string to name the instance. By this name, it will be possible to extract instance from the DI container</p><p><code>singleton()</code> - sets a flag in the Binding that tells the DI container that there is only one dependency.</p><p>Example:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span> <span style=color:#75715e>// initializing a text string instance through a method toInstance()
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span> Binding<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>String</span><span style=color:#f92672>&gt;</span>().toInstance(<span style=color:#e6db74>&#34;hello world&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span> <span style=color:#75715e>// or
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span> <span style=color:#75715e>// initializing a text string instance
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span> Binding<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>String</span><span style=color:#f92672>&gt;</span>().toProvide(() <span style=color:#f92672>=&gt;</span> <span style=color:#e6db74>&#34;hello world&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span> <span style=color:#75715e>// initializing an instance of a string named
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span> Binding<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>String</span><span style=color:#f92672>&gt;</span>().withName(<span style=color:#e6db74>&#34;my_string&#34;</span>).toInstance(<span style=color:#e6db74>&#34;hello world&#34;</span>);
+</span></span><span style=display:flex><span> <span style=color:#75715e>// or
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span> Binding<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>String</span><span style=color:#f92672>&gt;</span>().withName(<span style=color:#e6db74>&#34;my_string&#34;</span>).toProvide(() <span style=color:#f92672>=&gt;</span> <span style=color:#e6db74>&#34;hello world&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span> <span style=color:#75715e>// instance initialization like singleton
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span> Binding<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>String</span><span style=color:#f92672>&gt;</span>().toInstance(<span style=color:#e6db74>&#34;hello world&#34;</span>);
+</span></span><span style=display:flex><span> <span style=color:#75715e>// or
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span> Binding<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>String</span><span style=color:#f92672>&gt;</span>().toProvide(() <span style=color:#f92672>=&gt;</span> <span style=color:#e6db74>&#34;hello world&#34;</span>).singleton();
+</span></span></code></pre></div><h2 id=4-example>4. Example
+<a class=anchor href=#4-example>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;dart:async&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:meta/meta.dart&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;package:cherrypick/cherrypick.dart&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppModule</span> <span style=color:#66d9ef>extends</span> Module {
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span>override
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>void</span> builder(Scope currentScope) {
+</span></span><span style=display:flex><span>    bind<span style=color:#f92672>&lt;</span>ApiClient<span style=color:#f92672>&gt;</span>().withName(<span style=color:#e6db74>&#34;apiClientMock&#34;</span>).toInstance(ApiClientMock());
+</span></span><span style=display:flex><span>    bind<span style=color:#f92672>&lt;</span>ApiClient<span style=color:#f92672>&gt;</span>().withName(<span style=color:#e6db74>&#34;apiClientImpl&#34;</span>).toInstance(ApiClientImpl());
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>FeatureModule</span> <span style=color:#66d9ef>extends</span> Module {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>bool</span> isMock;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  FeatureModule({<span style=color:#66d9ef>required</span> <span style=color:#66d9ef>this</span>.isMock});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span>override
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>void</span> builder(Scope currentScope) {
+</span></span><span style=display:flex><span>    bind<span style=color:#f92672>&lt;</span>DataRepository<span style=color:#f92672>&gt;</span>()
+</span></span><span style=display:flex><span>        .withName(<span style=color:#e6db74>&#34;networkRepo&#34;</span>)
+</span></span><span style=display:flex><span>        .toProvide(
+</span></span><span style=display:flex><span>          () <span style=color:#f92672>=&gt;</span> NetworkDataRepository(
+</span></span><span style=display:flex><span>            currentScope.resolve<span style=color:#f92672>&lt;</span>ApiClient<span style=color:#f92672>&gt;</span>(
+</span></span><span style=display:flex><span>              named: isMock <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;apiClientMock&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;apiClientImpl&#34;</span>,
+</span></span><span style=display:flex><span>            ),
+</span></span><span style=display:flex><span>          ),
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>        .singleton();
+</span></span><span style=display:flex><span>    bind<span style=color:#f92672>&lt;</span>DataBloc<span style=color:#f92672>&gt;</span>().toProvide(
+</span></span><span style=display:flex><span>      () <span style=color:#f92672>=&gt;</span> DataBloc(
+</span></span><span style=display:flex><span>        currentScope.resolve<span style=color:#f92672>&lt;</span>DataRepository<span style=color:#f92672>&gt;</span>(named: <span style=color:#e6db74>&#34;networkRepo&#34;</span>),
+</span></span><span style=display:flex><span>      ),
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> main() <span style=color:#66d9ef>async</span> {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> scope <span style=color:#f92672>=</span> openRootScope().installModules([
+</span></span><span style=display:flex><span>    AppModule(),
+</span></span><span style=display:flex><span>  ]);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> subScope <span style=color:#f92672>=</span> scope
+</span></span><span style=display:flex><span>      .openSubScope(<span style=color:#e6db74>&#34;featureScope&#34;</span>)
+</span></span><span style=display:flex><span>      .installModules([FeatureModule(isMock: <span style=color:#66d9ef>true</span>)]);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> dataBloc <span style=color:#f92672>=</span> subScope.resolve<span style=color:#f92672>&lt;</span>DataBloc<span style=color:#f92672>&gt;</span>();
+</span></span><span style=display:flex><span>  dataBloc.data.listen((d) <span style=color:#f92672>=&gt;</span> print(<span style=color:#e6db74>&#39;Received data: </span><span style=color:#e6db74>$</span>d<span style=color:#e6db74>&#39;</span>),
+</span></span><span style=display:flex><span>      onError: (e) <span style=color:#f92672>=&gt;</span> print(<span style=color:#e6db74>&#39;Error: </span><span style=color:#e6db74>$</span>e<span style=color:#e6db74>&#39;</span>), onDone: () <span style=color:#f92672>=&gt;</span> print(<span style=color:#e6db74>&#39;DONE&#39;</span>));
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>await</span> dataBloc.fetchData();
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>DataBloc</span> {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> DataRepository _dataRepository;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  Stream<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>String</span><span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>get</span> data <span style=color:#f92672>=&gt;</span> _dataController.stream;
+</span></span><span style=display:flex><span>  StreamController<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>String</span><span style=color:#f92672>&gt;</span> _dataController <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> StreamController.broadcast();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  DataBloc(<span style=color:#66d9ef>this</span>._dataRepository);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  Future<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>void</span><span style=color:#f92672>&gt;</span> fetchData() <span style=color:#66d9ef>async</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>try</span> {
+</span></span><span style=display:flex><span>      _dataController.sink.add(<span style=color:#66d9ef>await</span> _dataRepository.getData());
+</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>catch</span> (e) {
+</span></span><span style=display:flex><span>      _dataController.sink.addError(e);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>void</span> dispose() {
+</span></span><span style=display:flex><span>    _dataController.close();
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>abstract</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>DataRepository</span> {
+</span></span><span style=display:flex><span>  Future<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>String</span><span style=color:#f92672>&gt;</span> getData();
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>NetworkDataRepository</span> <span style=color:#66d9ef>implements</span> DataRepository {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> ApiClient _apiClient;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> _token <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;token&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  NetworkDataRepository(<span style=color:#66d9ef>this</span>._apiClient);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span>override
+</span></span><span style=display:flex><span>  Future<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>String</span><span style=color:#f92672>&gt;</span> getData() <span style=color:#66d9ef>async</span> <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>await</span> _apiClient.sendRequest(
+</span></span><span style=display:flex><span>      url: <span style=color:#e6db74>&#39;www.google.com&#39;</span>, token: _token, requestBody: {<span style=color:#e6db74>&#39;type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;data&#39;</span>});
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>abstract</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ApiClient</span> {
+</span></span><span style=display:flex><span>  Future sendRequest({<span style=color:#960050;background-color:#1e0010>@</span><span style=color:#66d9ef>required</span> <span style=color:#66d9ef>String</span> url, <span style=color:#66d9ef>String</span> token, Map requestBody});
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ApiClientMock</span> <span style=color:#66d9ef>implements</span> ApiClient {
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span>override
+</span></span><span style=display:flex><span>  Future sendRequest(
+</span></span><span style=display:flex><span>      {<span style=color:#960050;background-color:#1e0010>@</span><span style=color:#66d9ef>required</span> <span style=color:#66d9ef>String</span><span style=color:#f92672>?</span> url, <span style=color:#66d9ef>String</span><span style=color:#f92672>?</span> token, Map<span style=color:#f92672>?</span> requestBody}) <span style=color:#66d9ef>async</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#39;Local Data&#39;</span>;
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ApiClientImpl</span> <span style=color:#66d9ef>implements</span> ApiClient {
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span>override
+</span></span><span style=display:flex><span>  Future sendRequest(
+</span></span><span style=display:flex><span>      {<span style=color:#960050;background-color:#1e0010>@</span><span style=color:#66d9ef>required</span> <span style=color:#66d9ef>String</span><span style=color:#f92672>?</span> url, <span style=color:#66d9ef>String</span><span style=color:#f92672>?</span> token, Map<span style=color:#f92672>?</span> requestBody}) <span style=color:#66d9ef>async</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#39;Network data&#39;</span>;
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=5-conclusion>5. Conclusion
+<a class=anchor href=#5-conclusion>#</a></h2><p>Now this library used to in three commercial projects and own pet projects.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#content>Content</a></li><li><a href=#1-preface>1. Preface</a></li><li><a href=#2-librarys-features>2. Library&rsquo;s features:</a></li><li><a href=#3-main-components-di>3. Main components DI</a><ul><li><a href=#31-scope>3.1. Scope</a></li><li><a href=#32-module>3.2. Module</a></li><li><a href=#33-binding>3.3. Binding</a></li></ul></li><li><a href=#4-example>4. Example</a></li><li><a href=#5-conclusion>5. Conclusion</a></li></ul></nav></div></aside></main></body></html>
